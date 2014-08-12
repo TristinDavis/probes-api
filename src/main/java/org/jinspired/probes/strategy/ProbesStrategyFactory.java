@@ -15,30 +15,32 @@
  *
  */
 
-package org.jinspired.probes.interceptor;
+package org.jinspired.probes.strategy;
 
 import org.jinspired.probes.Probes;
 
 /**
- * The {@link ProbesInterceptorFactory ProbesInterceptorFactory} interface provides an extension factory point for defining interceptors which can be used to intercept the <code>Probe.begin()</code> and <code>Probe.end()</code> calls to a probe.
+ * The {@link ProbesStrategyFactory} interface provides an extension factory point for defining new intelligent and dynamic metering strategies that can be used to control the metering of paired <code>Probe.begin()</code> and <code>Probe.end()</code> calls.
+ *
+ * @see org.jinspired.probes.strategy.ProbesStrategy#vote(org.jinspired.probes.Probes.Probe)
  *
  * @author William Louth
  */
-public interface ProbesInterceptorFactory {
+public interface ProbesStrategyFactory {
 
   /**
-   * Called once per individual configuration and prior to the first creation of an interceptor by the factory.
+   * Called once per individual configuration and prior to the first creation of a strategy by the factory.
    *
    * @param environment an environment instance holding possible configuration settings
    */
   public void init(Probes.Environment environment);
 
   /**
-   * Creates an interceptor to be associated with the thread context parameter.
+   * Creates a strategy to be associated with the thread context parameter.
    *
    * @param context the thread metering context
    * @return The interceptor to be associated with the thread context.
    */
-  public ProbesInterceptor create(Probes.Context context);
+  public ProbesStrategy create(Probes.Context context);
 
 }

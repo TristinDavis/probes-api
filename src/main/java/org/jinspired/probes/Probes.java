@@ -1,5 +1,5 @@
 /*
- * Copyright © 2013, 2014 JINSPIRED BV (http://www.autoletics.com)
+ * Copyright © 2013 JINSPIRED BV (http://www.autoletics.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,6 @@ import java.util.Iterator;
  *      } finally { p.end(); }
  *    }
  * </pre>
- * For more information see <a href="http://www.jinspired.org/satoris/open-api">http://www.jinspired.org/satoris/open-api</a>
- *
  * @author William Louth
  */
 public final class Probes {
@@ -238,7 +236,7 @@ public final class Probes {
     /**
      * Returns an immutable {@code java.util.Iterator<Probes.Label>} that allows navigation over the list of {@link Probes.Label Label} instances associated with the name.
      *
-     * @return An {@code java.util.Iterator<Probes.Label>} over the name's {@link Probes.Label Label} instances.
+     * @return A {@code java.util.Iterator<Probes.Label>} over the name's {@link Probes.Label Label} instances.
      * @see Probes.Name#contains(Probes.Label)
      * @see #label(String)
      */
@@ -328,6 +326,17 @@ public final class Probes {
      */
     public void run(Runnable runnable);
 
+    /**
+     * The current state of the probe in terms of firing (begin-end window) and metering (meters reads).
+     * </p>
+     * Prior to the <code>begin()</code> method being called and post the calling of the <code>end()</code> method the value returned is always zero.
+     * </p>
+     * Note: Irrespective of the probe state following a <code>begin()</code> call the probe should always have the <code>end()</code> method called.
+     *
+     * @return A non-zero value if the <code>begin()</code> has been called but not the <code>end()</code> with a negative value indicating the firing was not metered.
+     */
+    public int getState();
+
   }
 
   /**
@@ -410,7 +419,7 @@ public final class Probes {
     /**
      * Returns an immutable {@code java.util.Iterator<Probes.Meter>} that allows navigation over the list of {@link Probes.Meter Meter} instances enabled for this {@link Probes.Context Context}.
      *
-     * @return An {@code java.util.Iterator<Probes.Meter>} over {@link Probes.Meter Meter} instances enabled for this {@link Probes.Context Context}.
+     * @return A {@code java.util.Iterator<Probes.Meter>} over {@link Probes.Meter Meter} instances enabled for this {@link Probes.Context Context}.
      */
     public Iterator<Probes.Meter> meters();
 
@@ -520,7 +529,7 @@ public final class Probes {
     /**
      * Returns an immutable {@code java.util.Iterator<Probes.Change>} that allows navigation over the list of {@link Probes.Change Change} instances associated with the top level group of thread.
      *
-     * @return An {@code java.util.Iterator<Probes.Change>} over the list of {@link Probes.Change Change} instances associated with the top level group of thread.
+     * @return A {@code java.util.Iterator<Probes.Change>} over the list of {@link Probes.Change Change} instances associated with the top level group of thread.
      * @see Probes.ChangePoint#change(Probes.Name)
      */
     public Iterator<Probes.Change> changes();
@@ -538,7 +547,7 @@ public final class Probes {
     /**
      * Returns an immutable {@code java.util.Iterator<Probes.ChangePoint>} that allows navigation over the list of metered {@link Probes.ChangePoint ChangePoint} instances associated with the {@link Probes.Context Context}'s thread.
      *
-     * @return An {@code java.util.Iterator<Probes.ChangePoint>} over the list of metered {@link Probes.ChangePoint ChangePoint} instances associated with the {@link Probes.Context Context}'s thread.
+     * @return A {@code java.util.Iterator<Probes.ChangePoint>} over the list of metered {@link Probes.ChangePoint ChangePoint} instances associated with the {@link Probes.Context Context}'s thread.
      * @see Probes.ChangeSet#changepoint(Probes.Name)
      */
     public Iterator<Probes.ChangePoint> changepoints();
@@ -572,7 +581,7 @@ public final class Probes {
     /**
      * Returns an {@code java.util.Iterator<Probes.Change>} that allows navigation over the list of {@link Probes.Change Change} instances associated with the change point.
      *
-     * @return An {@code java.util.Iterator<Probes.Change>} over the change point's {@link Probes.Change Change} instances.
+     * @return A {@code java.util.Iterator<Probes.Change>} over the change point's {@link Probes.Change Change} instances.
      * @see Probes.ChangePoint#change(Probes.Name)
      */
     public Iterator<Probes.Change> changes();

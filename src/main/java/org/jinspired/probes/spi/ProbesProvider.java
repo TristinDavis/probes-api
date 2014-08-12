@@ -21,7 +21,6 @@ package org.jinspired.probes.spi;
 import org.jinspired.probes.Probes;
 
 import java.lang.reflect.Method;
-import java.util.Iterator;
 
 /**
  * The service provider interface for the probes metering runtime.
