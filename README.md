@@ -1,5 +1,7 @@
 ##Probes Open API
 
+[![Join the chat at https://gitter.im/autoletics/probes-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/autoletics/probes-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ###API Instrumentation
 There are a number reasons why you would consider calling the Probes Open API directly from your application code.
 * You wish to have complete control over which packages, classes and methods that are instrumented.
