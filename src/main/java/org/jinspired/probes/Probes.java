@@ -423,6 +423,18 @@ public final class Probes {
      */
     public Iterator<Probes.Meter> meters();
 
+    /**
+     * Returns the {@link org.jinspired.probes.Probes.Counter Counter} instance associated with the name.
+     * <p/>
+     * <p>Note: A {@link org.jinspired.probes.Probes.Counter Counter} will be created if not already present.
+     * <p/>
+     *
+     * @param name the name of the counter
+     * @return The {@link org.jinspired.probes.Probes.Counter Counter} instance associated with the name.
+     * @throws NullPointerException if the name parameter is <tt>null</tt>
+     */
+    public Counter counter(Name name);
+
   }
 
   /**
@@ -873,6 +885,48 @@ public final class Probes {
      * @see #getName(Probes.Name)
      */
     public void setName(Probes.Name name, Probes.Name newValue);
+
+  }
+
+  /**
+   * The {@link org.jinspired.probes.Probes.Counter Counter} interface represents a resource counter that may be mapped to a <code>Meter</code> and metered.
+   * <p/>
+   * <p>{@link org.jinspired.probes.Probes.Counter Counters}, unlike meters, can be dynamically added to the resource metering runtime and can be updated (incremented) for each executing thread by extensions or custom application code.
+   * <p/>
+   * <p>{@link org.jinspired.probes.Probes.Counter Counters} provide a mechanism for extending the list of possible meters supported by the metering runtime as custom meters can be configured to use underlying one or more counters as the resource metered.
+   * They also offer a smaller runtime overhead for simple event/incident reporting than {@link org.jinspired.probes.Probes.Probe Probes} which are interval based.
+   * <p/>
+   * <p>Note: The {@link org.jinspired.probes.Probes.Counter Counter} is specific to a particular thread and thus should not be reused across multiple threads of execution.
+   *
+   * @see org.jinspired.probes.Probes.Context#counter(org.jinspired.probes.Probes.Name)
+   */
+  public interface Counter {
+
+    /**
+     * The name uniquely identifying the counter.
+     *
+     * @return A non-null {@link org.jinspired.probes.Probes.Name Name} uniquely identifying the counter.
+     */
+    public Name getName();
+
+    /**
+     * The current value of the counter.
+     *
+     * @return The current value of the counter.
+     */
+    public long getValue();
+
+    /**
+     * Increments the counter value by one.
+     */
+    public void inc();
+
+    /**
+     * Increments the counter by the value specified.
+     *
+     * @param value the positive value to be added to the counter
+     */
+    public void inc(long value);
 
   }
 
