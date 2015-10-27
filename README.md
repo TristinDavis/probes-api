@@ -142,6 +142,18 @@ The `Environment` does not support the adding of `Object` values other than `Str
 
 >**Note**: The [Autoletics](www.autoletics.com) implementation of the Open API for the JVM uses a global `Environment` instance that is not directly accessible from the Open API but that is used by thread local `Environment` instances when a value is not found within its own scope. Values are added to this global instance by an administrator via a configuration file in our case that file is `jxinsight.override.config`.
 
+#####Counter
+The `Counter` interface represents a resource counter that may be mapped, via some external configuration, by a metering runtime implementation to a `Meter` and then have its `getValue()` method called when a firing `Probe` is metered. A `Counter` is specific to a thread `Context`. To retrieve a `Counter` from a `Context` use the `counter(Name)` method which will automatically create the `Counter` if it has not already being created previously. A `Counter` is a incrementing only value - a requirement for any measure mapped to a meter.
+
+    // hold a static constant reference to the name of the counter to be updated
+    static final Probes.Name COUNTER = Probes.name(...).name(...);
+
+    // increment by 1
+    Probes.context().counter(COUNTER).inc();
+
+    // increment by x
+    Probes.context().counter(COUNTER).inc(x);
+
 ###API Concepts – Advance
 The Open API serves two primary use cases. The first is to expose the software execution behavior, contextual and/or code based, to other systems which can monitor and manage the application more effectively than the actual language/platform runtime itself.
 
