@@ -20,9 +20,9 @@ package org.jinspired.probes.strategy;
 import org.jinspired.probes.Probes;
 
 /**
- * The {@link ProbesStrategyFactory} interface provides an extension factory point for defining new intelligent and dynamic metering strategies that can be used to control the metering of paired <code>Probe.begin()</code> and <code>Probe.end()</code> calls.
+ * The {@link ProbesStrategyFactory} interface provides an extension factory point for defining new intelligent and dynamic metering strategies that can be used to control the metering of paired {@code Probe.begin()} and {@code Probe.end()} calls.
  *
- * @see org.jinspired.probes.strategy.ProbesStrategy#vote(org.jinspired.probes.Probes.Probe)
+ * @see ProbesStrategy#vote(Probes.Probe)
  *
  * @author William Louth
  */

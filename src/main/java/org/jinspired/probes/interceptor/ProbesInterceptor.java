@@ -20,27 +20,27 @@ package org.jinspired.probes.interceptor;
 import org.jinspired.probes.Probes;
 
 /**
- * The {@link ProbesInterceptor} interface provides an extension point for defining interceptors which can be used to intercept the <code>Probe.begin()</code> and <code>Probe.end()</code> calls to a probe.
+ * The {@link ProbesInterceptor} interface provides an extension point for defining interceptors which can be used to intercept the {@code Probe.begin()} and {@code Probe.end()} calls to a probe.
  *
- * @see ProbesInterceptorFactory#create(org.jinspired.probes.Probes.Context)
+ * @see ProbesInterceptorFactory#create(Probes.Context)
  *
  * @author William Louth
  */
 public interface ProbesInterceptor {
 
   /**
-   * An interception callback invoked after the dispatching of <code>Probe.begin()</code> to the next probes provider in the probes provider runtime stack beneath the interceptor probes provider.
+   * An interception callback invoked after the dispatching of {@code Probe.begin()} to the next probes provider in the probes provider runtime stack beneath the interceptor probes provider.
    *
    * @param probe the probe intercepted
-   * @see org.jinspired.probes.Probes.Probe#begin()
+   * @see Probes.Probe#begin()
    */
   public void begin(Probes.Probe probe);
 
   /**
-   * An interception callback invoked after the dispatching of <code>Probe.end()</code> to the next probes provider in the probes provider runtime stack beneath the interceptor probes provider.
+   * An interception callback invoked after the dispatching of {@code Probe.end()} to the next probes provider in the probes provider runtime stack beneath the interceptor probes provider.
    *
    * @param probe the probe intercepted
-   * @see org.jinspired.probes.Probes.Probe#end()
+   * @see Probes.Probe#end()
    */
   public void end(Probes.Probe probe);
 

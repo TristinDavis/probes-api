@@ -26,20 +26,20 @@ import java.security.PrivilegedAction;
 import java.util.Iterator;
 
 /**
- * The {@link Probes} class is the entry point into the activity metering API.<p/>
- * <p>The Open API allows developers to instrument application code for the purpose of measuring consumption of various meters during the course of an activity's execution.</p>
- * <p>Metering of an activity is performed by a {@link Probes.Probe Probe} created by a {@link Probes.Context Context} which is tied to the lifetime of a thread.</p>
- * <p> The following sample code shows how to instrument a block of code. </p>
+ * The {@link Probes} class is the entry point into the activity metering API.<p>
+ * The Open API allows developers to instrument application code for the purpose of measuring consumption of various meters during the course of an activity's execution.<p>
+ * Metering of an activity is performed by a {@link Probes.Probe Probe} created by a {@link Probes.Context Context} which is tied to the lifetime of a thread.<p>
+ * The following sample code shows how to instrument a block of code.
  * <pre>
  *    Probes.Probe p = Probes.begin(Probes.name("func"));
  *    try {
  *    // perform some expensive operation
  *    } finally { p.end(); }
  * </pre>
- * <p> A {@link Probes.Probe Probe} can be fired multiple times during the execution of units of work. </p>
+ * <p>A {@link Probes.Probe Probe} can be fired multiple times during the execution of units of work.</p>
  * <pre>
  *    Probes.Probe p = Probes.create(Probes.name("func"));
- *    for(int i=0; i < count; i++) {
+ *    for(...) {
  *      p.begin();
  *      try {
  *      // perform some expensive operation
@@ -206,7 +206,7 @@ public final class Probes {
      *
      * @param index the 0-based index of the name part to retrieve.
      * @return The value of a name part at the specified index
-     * @throws IllegalArgumentException if the index value < 0 and >= {@link #getLength() getLength()}
+     * @throws IllegalArgumentException if the index value is less then 0 or greater than or equal to {@link #getLength() getLength()}
      */
     public String valueAt(int index);
 
@@ -257,7 +257,7 @@ public final class Probes {
      * Returns the first {@link Probes.Name Name} ancestor that has a name value equal to a specified value.
      *
      * @param value the name value part to be matched
-     * @return The first {@link Probes.Name Name} ancestor that has a name value equal to a specified value or <t>null</t>.
+     * @return The first {@link Probes.Name Name} ancestor that has a name value equal to a specified value or <tt>null</tt>.
      */
     public Probes.Name find(String value);
 
@@ -327,13 +327,11 @@ public final class Probes {
     public void run(Runnable runnable);
 
     /**
-     * The current state of the probe in terms of firing (begin-end window) and metering (meters reads).
-     * </p>
-     * Prior to the <code>begin()</code> method being called and post the calling of the <code>end()</code> method the value returned is always zero.
-     * </p>
-     * Note: Irrespective of the probe state following a <code>begin()</code> call the probe should always have the <code>end()</code> method called.
+     * The current state of the probe in terms of firing (begin-end window) and metering (meters reads).<p>
+     * Prior to the {@code begin()} method being called and post the calling of the {@code end()} method the value returned is always zero.<p>
+     * Note: Irrespective of the probe state following a {@code begin()} call the probe should always have the {@code end()} method called.
      *
-     * @return A non-zero value if the <code>begin()</code> has been called but not the <code>end()</code> with a negative value indicating the firing was not metered.
+     * @return A non-zero value if the {@code begin()} has been called but not the {@code end()} with a negative value indicating the firing was not metered.
      */
     public int getState();
 
@@ -425,9 +423,7 @@ public final class Probes {
 
     /**
      * Returns the {@link org.jinspired.probes.Probes.Counter Counter} instance associated with the name.
-     * <p/>
      * <p>Note: A {@link org.jinspired.probes.Probes.Counter Counter} will be created if not already present.
-     * <p/>
      *
      * @param name the name of the counter
      * @return The {@link org.jinspired.probes.Probes.Counter Counter} instance associated with the name.
@@ -477,7 +473,7 @@ public final class Probes {
 
     /**
      * The last and most current {@link Probes.Meter Meter} value read.
-     * <p/>
+     * <p>
      * The high value is always equals or greater than the {@link #getLow()} value.
      *
      * @return The last {@link Probes.Meter Meter} reading.
@@ -889,13 +885,10 @@ public final class Probes {
   }
 
   /**
-   * The {@link org.jinspired.probes.Probes.Counter Counter} interface represents a resource counter that may be mapped to a <code>Meter</code> and metered.
-   * <p/>
+   * The {@link org.jinspired.probes.Probes.Counter Counter} interface represents a resource counter that may be mapped to a {@code Meter} and metered.
    * <p>{@link org.jinspired.probes.Probes.Counter Counters}, unlike meters, can be dynamically added to the resource metering runtime and can be updated (incremented) for each executing thread by extensions or custom application code.
-   * <p/>
    * <p>{@link org.jinspired.probes.Probes.Counter Counters} provide a mechanism for extending the list of possible meters supported by the metering runtime as custom meters can be configured to use underlying one or more counters as the resource metered.
-   * They also offer a smaller runtime overhead for simple event/incident reporting than {@link org.jinspired.probes.Probes.Probe Probes} which are interval based.
-   * <p/>
+   * <p>They also offer a smaller runtime overhead for simple event/incident reporting than {@link org.jinspired.probes.Probes.Probe Probes} which are interval based.
    * <p>Note: The {@link org.jinspired.probes.Probes.Counter Counter} is specific to a particular thread and thus should not be reused across multiple threads of execution.
    *
    * @see org.jinspired.probes.Probes.Context#counter(org.jinspired.probes.Probes.Name)

@@ -33,19 +33,3 @@ artifacts {
   archives sourcesJar
   archives javadocJar
 }
-
-uploadArchives {
-  repositories {
-    flatDir {
-      dirs 'repo'
-    }
-    repositories {
-      mavenDeployer {
-        repository(url: mavenURL) {
-          authentication(userName: mavenUSR, password: mavenPWD)
-        }
-      }
-    }
-  }
-}
-

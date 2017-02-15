@@ -20,7 +20,7 @@ package org.jinspired.probes.interceptor;
 import org.jinspired.probes.Probes;
 
 /**
- * The {@link ProbesInterceptorFactory ProbesInterceptorFactory} interface provides an extension factory point for defining interceptors which can be used to intercept the <code>Probe.begin()</code> and <code>Probe.end()</code> calls to a probe.
+ * The {@link ProbesInterceptorFactory ProbesInterceptorFactory} interface provides an extension factory point for defining interceptors which can be used to intercept the {@code Probe.begin()} and {@code Probe.end()} calls to a probe.
  *
  * @author William Louth
  */
